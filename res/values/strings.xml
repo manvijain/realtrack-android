@@ -88,8 +88,10 @@
     <string name="friday">Fridays</string>
     <string name="saturday">Saturdays</string>
     <string name="sunday">Sundays</string>
+    <string name="load">Load</string>
     <string name="notes">Notes</string>
     <string name="cohort">Reporting Cohort</string>
+    <string name="enterload">Enter Load per Day</string>
     <string name="enternotes">Enter Notes</string>
     <string name="entercohort">Enter Reporting Cohort</string>
     <string name="organizationsinvolved">Organizations Involved</string>
@@ -173,6 +175,7 @@
     <string name="optional">Optional</string>
     <string name="peacecorpslogo">Peace Corps Logo</string>
     <string name="nonotes">No notes</string>
+    <string name="noload">No Load</string>
     <string name="noreminders">No reminders</string>
     <string name="nocohort">No cohort</string>
     <string name="from">From</string>

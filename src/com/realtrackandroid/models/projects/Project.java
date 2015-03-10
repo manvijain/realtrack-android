@@ -19,6 +19,8 @@ public class Project {
   private long endDate;
 
   private String notes; // notes are optional
+  
+  private String load; // load is optional
 
   // Database table
   public static final String PROJECT_TABLE = "projects";
@@ -34,12 +36,15 @@ public class Project {
   public static final String COLUMN_ENDDATE = "enddate";
 
   public static final String COLUMN_NOTES = "notes";
+  
+  public static final String COLUMN_LOAD = "load";
 
   // Database creation SQL statement
   private static final String DATABASE_CREATE = "create table if not exists " + PROJECT_TABLE + "("
           + COLUMN_ID + " integer primary key autoincrement, " + COLUMN_UPDATED
           + " integer not null default (strftime('%s','now')), " + COLUMN_TITLE
-          + " text not null, " + COLUMN_NOTES + " text, " // notes are optional
+          + " text not null, " + COLUMN_NOTES + " text, " // notes are optional 
+          + COLUMN_LOAD + " text, " // load is optional
           + COLUMN_STARTDATE + " integer not null, " + COLUMN_ENDDATE + " integer not null" + ");";
 
   // used to create the table
@@ -93,8 +98,16 @@ public class Project {
   public String getNotes() {
     return notes;
   }
+  
+  public String getLoad(){
+	  return load;
+  }
 
   public void setNotes(String notes) {
     this.notes = notes;
+  }
+  
+  public void setLoad(String load) {
+	    this.load = load;
   }
 }

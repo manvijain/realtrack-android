@@ -50,14 +50,15 @@ public class ProjectDAO {
   public ArrayList<Project> getAllProjects() {
     openDB();
     ArrayList<Project> output = null;
-    String[] columnsToRead = new String[5];
+    String[] columnsToRead = new String[6];
     columnsToRead[0] = Project.COLUMN_TITLE;
     columnsToRead[1] = Project.COLUMN_STARTDATE;
     columnsToRead[2] = Project.COLUMN_ENDDATE;
     columnsToRead[3] = Project.COLUMN_NOTES;
     columnsToRead[4] = Project.COLUMN_ID;
+    columnsToRead[5] = Project.COLUMN_LOAD;
     Cursor returnData = readDatabase.query(Project.PROJECT_TABLE, columnsToRead, null, null, null,
-            null, null);
+            null, null,null);
     output = extractProjects(returnData);
     closeDB();
     return output;
@@ -65,15 +66,16 @@ public class ProjectDAO {
 
   public Project getProjectWithId(int id) {
     openDB();
-    String[] columnsToRead = new String[5];
+    String[] columnsToRead = new String[6];
     columnsToRead[0] = Project.COLUMN_TITLE;
     columnsToRead[1] = Project.COLUMN_STARTDATE;
     columnsToRead[2] = Project.COLUMN_ENDDATE;
     columnsToRead[3] = Project.COLUMN_NOTES;
     columnsToRead[4] = Project.COLUMN_ID;
+    columnsToRead[5] = Project.COLUMN_LOAD;
     String whereClause = Project.COLUMN_ID + '=' + id;
     Cursor returnData = readDatabase.query(Project.PROJECT_TABLE, columnsToRead, whereClause, null,
-            null, null, null);
+            null, null, null,null);
     returnData.moveToFirst();
     Project p = new Project();
     p.setTitle(returnData.getString(0));
@@ -81,6 +83,7 @@ public class ProjectDAO {
     p.setEndDate(returnData.getLong(2));
     p.setNotes(returnData.getString(3));
     p.setId(Integer.parseInt(returnData.getString(4)));
+    p.setLoad(returnData.getString(5));
     closeDB();
     // Return the constructed Project
     return p;
@@ -101,6 +104,7 @@ public class ProjectDAO {
       p.setEndDate(returnData.getLong(2));
       p.setNotes(returnData.getString(3));
       p.setId(Integer.parseInt(returnData.getString(4)));
+      p.setLoad(returnData.getString(5));
       output.add(count, p);
       // Advance the Cursor
       returnData.moveToNext();
@@ -118,6 +122,7 @@ public class ProjectDAO {
     newValue.put(Project.COLUMN_STARTDATE, project.getStartDate());
     newValue.put(Project.COLUMN_ENDDATE, project.getEndDate());
     newValue.put(Project.COLUMN_NOTES, project.getNotes());
+    newValue.put(Project.COLUMN_LOAD, project.getLoad());
     // Insert the item into the database
     writeDatabase.insert(Project.PROJECT_TABLE, null, newValue);
     closeDB();
@@ -130,6 +135,7 @@ public class ProjectDAO {
     newValue.put(Project.COLUMN_STARTDATE, project.getStartDate());
     newValue.put(Project.COLUMN_ENDDATE, project.getEndDate());
     newValue.put(Project.COLUMN_NOTES, project.getNotes());
+    newValue.put(Project.COLUMN_LOAD, project.getLoad());
     String whereClause = Project.COLUMN_ID + '=' + project.getId();
     // Update the item into the database
     writeDatabase.update(Project.PROJECT_TABLE, newValue, whereClause, null);

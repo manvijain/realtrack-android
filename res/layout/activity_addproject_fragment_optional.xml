@@ -8,6 +8,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
+        
+        <EditText
+            android:id="@+id/load"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:hint="@string/enterload"
+            android:inputType="text|textImeMultiLine|textMultiLine|textCapSentences"
+            android:maxLines="6"
+            android:minLines="1"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/darkgrey"
+            android:textColorHint="@color/intermediategrey"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/notes"

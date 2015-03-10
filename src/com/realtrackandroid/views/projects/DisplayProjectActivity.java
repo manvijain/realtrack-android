@@ -59,6 +59,9 @@ public class DisplayProjectActivity extends SherlockFragmentActivity {
     TextView notes = (TextView) findViewById(R.id.notes);
     if (p.getNotes().length() > 0)
       notes.setText("Notes:\n" + p.getNotes());
+    TextView load = (TextView) findViewById(R.id.load);
+    if (p.getLoad().length() > 0)
+      load.setText("Load:\n" + p.getLoad());
   }
 
   // create actionbar menu
@@ -80,13 +83,12 @@ public class DisplayProjectActivity extends SherlockFragmentActivity {
    */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        // provide a back button on the actionbar
+    int itemId = item.getItemId();
+	if (itemId == android.R.id.home) {
+		// provide a back button on the actionbar
         finish();
-        break;
-      case R.id.action_deleteproject:
-        // warn the user first!
+	} else if (itemId == R.id.action_deleteproject) {
+		// warn the user first!
         new AlertDialog.Builder(this)
                 .setMessage("Are you sure you want to delete this project? This CANNOT be undone.")
                 .setCancelable(false).setNegativeButton("No", null)
@@ -97,31 +99,26 @@ public class DisplayProjectActivity extends SherlockFragmentActivity {
                     finish();
                   }
                 }).show();
-        break;
-      case R.id.action_editproject:
-        Intent i = new Intent(DisplayProjectActivity.this, EditProjectActivity.class);
-        i.putExtra("projectid", id);
-        startActivity(i);
-        overridePendingTransition(R.anim.animation_slideinright, R.anim.animation_slideoutleft);
-        break;
-      case R.id.action_help:
-        HelpDialog helpDialog = new HelpDialog();
-        helpDialog.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
-        helpDialog.show(getSupportFragmentManager(), "helpdialog");
-        break;
-      case R.id.action_framework:
-        FrameworkInfoDialog frameworkInfoDialog = new FrameworkInfoDialog();
-        frameworkInfoDialog.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
-        frameworkInfoDialog.show(getSupportFragmentManager(), "frameworkinfodialog");
-        break;
-      case R.id.action_glossary:
-        GlossaryDialog glossaryDialog = new GlossaryDialog();
-        glossaryDialog.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
-        glossaryDialog.show(getSupportFragmentManager(), "glossarydialog");
-        break;
-      default:
-        return super.onOptionsItemSelected(item);
-    }
+	} else if (itemId == R.id.action_editproject) {
+		Intent i = new Intent(DisplayProjectActivity.this, EditProjectActivity.class);
+		i.putExtra("projectid", id);
+		startActivity(i);
+		overridePendingTransition(R.anim.animation_slideinright, R.anim.animation_slideoutleft);
+	} else if (itemId == R.id.action_help) {
+		HelpDialog helpDialog = new HelpDialog();
+		helpDialog.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
+		helpDialog.show(getSupportFragmentManager(), "helpdialog");
+	} else if (itemId == R.id.action_framework) {
+		FrameworkInfoDialog frameworkInfoDialog = new FrameworkInfoDialog();
+		frameworkInfoDialog.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
+		frameworkInfoDialog.show(getSupportFragmentManager(), "frameworkinfodialog");
+	} else if (itemId == R.id.action_glossary) {
+		GlossaryDialog glossaryDialog = new GlossaryDialog();
+		glossaryDialog.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
+		glossaryDialog.show(getSupportFragmentManager(), "glossarydialog");
+	} else {
+		return super.onOptionsItemSelected(item);
+	}
 
     return true;
   }

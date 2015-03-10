@@ -16,6 +16,8 @@ public class OptionalFragment extends SherlockFragment {
   private View v;
 
   private EditText notes;
+  
+  private EditText load;
 
   private ProjectFragmentInterface mActivity;
 
@@ -43,6 +45,7 @@ public class OptionalFragment extends SherlockFragment {
       return;
 
     p.setNotes(notes.getText().toString());
+    p.setLoad(load.getText().toString());
     return;
   }
 
@@ -57,14 +60,20 @@ public class OptionalFragment extends SherlockFragment {
     super.onResume();
 
     notes = (EditText) v.findViewById(R.id.notes);
+    load = (EditText) v.findViewById(R.id.load);
 
     if (p != null) {
       notes.setText(p.getNotes());
+      load.setText(p.getLoad());
     }
 
   }
 
+  public EditText getLoad() {
+	    return load;
+	  }
   public EditText getNotes() {
-    return notes;
-  }
+	    return notes;
+	  }
+
 }

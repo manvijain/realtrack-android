@@ -115,13 +115,35 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
+        
+        <TextView
+            android:id="@+id/load"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateslayout"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/noload"
+            android:textColor="@color/darkgrey"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/horizline2"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/load"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/intermediategrey" />
 
         <TextView
             android:id="@+id/notes"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/dateslayout"
+            android:layout_below="@id/horizline2"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -131,13 +153,16 @@
             android:textStyle="bold" />
 
         <View
-            android:id="@+id/horizline2"
+            android:id="@+id/horizline3"
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_below="@id/notes"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@color/intermediategrey" />
+
+        
     </RelativeLayout>
 
 </ScrollView>
